@@ -1,0 +1,93 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Shortie',
+      theme: ThemeData(
+        primarySwatch: Colors.indigo,
+      ),
+      home: MyHomePage(title: 'Shortie'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  Future<String> createAlertDialog(BuildContext context) {
+    //promise to return string
+    TextEditingController customController =
+        TextEditingController(); //new texteditingc object
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("Enter URL: "),
+            content: TextField(
+              controller: customController,
+            ),
+            actions: [
+              MaterialButton(
+                elevation: 5.0,
+                child: Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop(customController.text.toString());
+                },
+              )
+            ],
+          );
+        });
+  }
+
+  
+
+  @override
+  Widget build(BuildContext context) {
+    List item = List();
+    item=['HI'];
+    String temp;
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListView(
+          children: 
+          
+          item.map((element)=>Text(element)).toList(), 
+          
+          ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          createAlertDialog(context).then((onValue) {
+            temp=onValue;
+            print(temp);
+             item.add(temp);
+            setState(() {
+             
+            });
+          });
+        },
+        tooltip: 'Add URL',
+        child: Icon(Icons.add),
+      ),
+      
+    );
+  }
+}
