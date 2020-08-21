@@ -30,6 +30,7 @@ dependencies:
   cupertino_icons: ^0.1.3
   http: any
   share: ^0.6.4+3
+  string_validator: ^0.1.4
 
 dev_dependencies:
   flutter_test:
