@@ -1,4 +1,4 @@
-package com.example.Shortie
+package com.steve.shortie
 
 import io.flutter.embedding.android.FlutterActivity
 
